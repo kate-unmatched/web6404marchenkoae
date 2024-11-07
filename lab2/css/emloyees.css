@@ -40,6 +40,7 @@ body {
 }
 
 .employees-grid {
+    margin-top: 150px;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
@@ -54,6 +55,7 @@ body {
     text-align: center;
     width: 200px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .employee-photo {
@@ -69,4 +71,9 @@ body {
 .employee-card p {
     margin: 0;
     color: #666;
+}
+
+.employee-card:hover {
+    transform: scale(1.10); /* Увеличение на 5% */
+    box-shadow: 0 8px 16px rgba(243, 204, 204, 0.2); /* Более сильная тень */
 }
