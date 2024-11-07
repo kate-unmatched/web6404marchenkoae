@@ -1,0 +1,95 @@
+/* Сброс базовых стилей */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, sans-serif;
+    color: #fff;
+    background-color: #333;
+}
+
+/* Основной стиль */
+.main-header {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Фоновое видео */
+.background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* Размытие и текст */
+.blurred-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 600px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный фон */
+    backdrop-filter: blur(10px); /* Размытие */
+    border-radius: 10px;
+    text-align: center;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Логотип */
+.logo-image {
+    width: 200px; /* Ширина логотипа */
+    margin-bottom: 20px; /* Отступ под логотипом */
+}
+
+.blurred-overlay h1 {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+}
+
+.blurred-overlay p {
+    font-size: 1.5em;
+    margin-bottom: 50px;
+}
+
+nav a {
+    color: #fff;
+    margin: 0 10px;
+    font-size: 1.3em;
+    text-decoration: none;
+    font-weight: lighter;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Анимация для плавного появления */
+.fade-in-content {
+    opacity: 0;
+    animation: fadeInContent 1s forwards;
+}
+
+@keyframes fadeInContent {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
