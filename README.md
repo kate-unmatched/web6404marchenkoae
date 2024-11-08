@@ -67,5 +67,5 @@
 
 ## Демонстрационное видео
 
-[![Watch the video](lab2/files/image.png)](lab2/files/pokaz.mp4)
+[![Watch the video](lab2/files/image.png)](https://drive.google.com/file/d/1m-61Nv34oA8gGOdzZNc4_sj0JfbKDGf6/view?usp=drive_link)
 
