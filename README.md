@@ -15,7 +15,7 @@
 
 c. мой коллега Александр
 
-![fvdfv](sticker.gif)
+![Котик](sticker.gif)
 
 ---
 
