@@ -3,10 +3,7 @@
  * @param {number} number - Число для проверки
  * @returns {boolean} - Возвращает true, если number - целое число, если нет - false
  */
-const cache = {};
-
 function isInteger(number) {
-    //  number === (num | 0)
     return (number === (number >> 0))
 }
 
@@ -28,13 +25,11 @@ function even() {
  * @returns {number} - Сумма чисел от 1 до n
  */
 function sumTo(number) {
+    if (number < 0) {
+      return null;
+    }
 
-    // if (number in cache) {
-    //     console.log("I'm in cache, number " + number)
-    //     return cache[number];
-    // }
     const sum = (number * (number + 1)) / 2;
-    // cache[number] = sum;
     return sum;
 }
 
@@ -45,7 +40,7 @@ function sumTo(number) {
  * @returns {number} - Сумма чисел от 1 до n
  */
 function recSumTo(number, accumulator = 0) {
-  if (typeof number !== 'number' || !Number.isInteger(number) || number < 0) {
+  if (number < 0) {
     return null;
   }
   
@@ -67,7 +62,7 @@ function recSumTo(number, accumulator = 0) {
  * @returns {number} - Факториал числа number
  */
 function factorial(n, accumulator = 1) {
-    if (typeof n !== 'number' || !Number.isInteger(n) || n < 0) {
+    if (n < 0) {
       return null;
     }
   
@@ -84,7 +79,7 @@ function factorial(n, accumulator = 1) {
  * @returns {boolean} - Возвращает true, если number - степень двойки, если нет - false
  */
 function isBinary(number) {
-    if (typeof number !== 'number' || !Number.isInteger(number) || number <= 0) {
+    if (number <= 0) {
         return false;
     }
 
@@ -92,13 +87,58 @@ function isBinary(number) {
 }
 
 /**
- * Напишите функцию, которая находит N-е число Фибоначчи
- * @param {*} n
+ * Функция, которая находит N-е число Фибоначчи (вычислительная сложность O(log N))
+ * @param {number} number - индекс числа Фибоначчи
+ * @returns {number} - N-е число Фибоначчи
  */
-function fibonacci(n) {}
+function fibonacci(number) {
+    if (number <= 0) return 0;
+    if (number === 1) return 1;
 
-/** Напишите функцию, которая принимает начальное значение и функцию операции
- * и возвращает функцию - выполняющую эту операцию.
+    let resultFib = [
+        [1, 0],
+        [0, 1]
+    ];
+    let matrix_for_fib = [
+        [1, 1],
+        [1, 0]
+    ];
+    let exp = number - 1;
+
+    while (exp > 0) {
+        if (exp % 2 === 1) {
+            resultFib = [
+                [
+                    resultFib[0][0] * matrix_for_fib[0][0] + resultFib[0][1] * matrix_for_fib[1][0],
+                    resultFib[0][0] * matrix_for_fib[0][1] + resultFib[0][1] * matrix_for_fib[1][1]
+                ],
+                [
+                    resultFib[1][0] * matrix_for_fib[0][0] + resultFib[1][1] * matrix_for_fib[1][0],
+                    resultFib[1][0] * matrix_for_fib[0][1] + resultFib[1][1] * matrix_for_fib[1][1]
+                ]
+            ];
+        }
+
+        matrix_for_fib = [
+            [
+                matrix_for_fib[0][0] * matrix_for_fib[0][0] + matrix_for_fib[0][1] * matrix_for_fib[1][0],
+                matrix_for_fib[0][0] * matrix_for_fib[0][1] + matrix_for_fib[0][1] * matrix_for_fib[1][1]
+            ],
+            [
+                matrix_for_fib[1][0] * matrix_for_fib[0][0] + matrix_for_fib[1][1] * matrix_for_fib[1][0],
+                matrix_for_fib[1][0] * matrix_for_fib[0][1] + matrix_for_fib[1][1] * matrix_for_fib[1][1]
+            ]
+        ];
+
+        exp = Math.floor(exp / 2);
+    }
+
+    return resultFib[0][0];
+}
+
+
+/** Функция, которая принимает начальное значение и функция операции.
+ * Возвращает функцию - выполняющую эту операцию.
  * Если функция операции (operatorFn) не задана - по умолчанию всегда
  * возвращается начальное значение (initialValue)
  * @param initialValue
@@ -108,7 +148,15 @@ function fibonacci(n) {}
  * console.log(sumFn(5)) - 15
  * console.log(sumFn(3)) - 18
  */
-function getOperationFn(initialValue, operatorFn) {}
+function getOperationFn(initialValue, operatorFn) {
+    if (typeof operatorFn !== 'function') {
+      return () => initialValue;
+    }
+  
+    let storedValue = initialValue;
+  
+    return (newValue) => storedValue = operatorFn(storedValue, newValue);
+}
 
 /**
  * Напишите функцию создания генератора арифметической последовательности.
@@ -126,10 +174,18 @@ function getOperationFn(initialValue, operatorFn) {}
  * console.log(generator()); // 7
  * console.log(generator()); // 9
  */
-function sequence(start, step) {}
+function sequence(start = 0, step = 1) {
+  let currentValue = start;
+
+  return () => {
+    const result = currentValue;
+    currentValue += step;
+    return result;
+  };
+}
 
 /**
- * Напишите функцию deepEqual, которая принимает два значения
+ * Функция, которая принимает два значения
  * и возвращает true только в том случае, если они имеют одинаковое значение
  * или являются объектами с одинаковыми свойствами,
  * значения которых также равны при сравнении с рекурсивным вызовом deepEqual.
@@ -142,7 +198,47 @@ function sequence(start, step) {}
  * deepEqual({arr: [22, 33], text: 'text'}, {arr: [22, 33], text: 'text'}) // true
  * deepEqual({arr: [22, 33], text: 'text'}, {arr: [22, 3], text: 'text2'}) // false
  */
-function deepEqual(firstObject, secondObject) {}
+function deepEqual(firstObject, secondObject) {
+  if (firstObject === secondObject) {
+    return true;
+  }
+
+  if (
+    firstObject === null || typeof firstObject !== 'object' ||
+    secondObject === null || typeof secondObject !== 'object'
+  ) {
+    return false;
+  }
+
+  if (Array.isArray(firstObject) && Array.isArray(secondObject)) {
+    if (firstObject.length !== secondObject.length) return false;
+    for (let i = 0; i < firstObject.length; i++) {
+      if (!deepEqual(firstObject[i], secondObject[i])) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  if (Array.isArray(firstObject) !== Array.isArray(secondObject)) {
+    return false;
+  }
+
+  const keys1 = Object.keys(firstObject);
+  const keys2 = Object.keys(secondObject);
+
+  if (keys1.length !== keys2.length) {
+    return false;
+  }
+
+  for (const key of keys1) {
+    if (!secondObject.hasOwnProperty(key) || !deepEqual(firstObject[key], secondObject[key])) {
+      return false;
+    }
+  }
+
+  return true;
+}
 
 module.exports = {
     isInteger,
