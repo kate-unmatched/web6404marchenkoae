@@ -159,7 +159,7 @@ function getOperationFn(initialValue, operatorFn) {
 }
 
 /**
- * Напишите функцию создания генератора арифметической последовательности.
+ * Функция создания генератора арифметической последовательности.
  * При ее вызове, она возвращает новую функцию генератор - generator().
  * Каждый вызов функции генератора возвращает следующий элемент последовательности.
  * Если начальное значение не передано, то оно равно 0.
@@ -189,7 +189,7 @@ function sequence(start = 0, step = 1) {
  * и возвращает true только в том случае, если они имеют одинаковое значение
  * или являются объектами с одинаковыми свойствами,
  * значения которых также равны при сравнении с рекурсивным вызовом deepEqual.
- * Учитывать специфичные объекты(такие как Date, RegExp и т.п.) не обязательно
+ * Учитываются специфичные объекты (Date, RegExp, Map, Set)
  *
  * @param {object} firstObject - первый объект
  * @param {object} secondObject - второй объект
@@ -199,6 +199,10 @@ function sequence(start = 0, step = 1) {
  * deepEqual({arr: [22, 33], text: 'text'}, {arr: [22, 3], text: 'text2'}) // false
  */
 function deepEqual(firstObject, secondObject) {
+  if (Number.isNaN(firstObject) && Number.isNaN(secondObject)) {
+    return true;
+  }
+
   if (firstObject === secondObject) {
     return true;
   }
@@ -208,6 +212,34 @@ function deepEqual(firstObject, secondObject) {
     secondObject === null || typeof secondObject !== 'object'
   ) {
     return false;
+  }
+
+  if (firstObject instanceof Date && secondObject instanceof Date) {
+    return firstObject.getTime() === secondObject.getTime();
+  }
+
+  if (firstObject instanceof RegExp && secondObject instanceof RegExp) {
+    return firstObject.toString() === secondObject.toString();
+  }
+
+  if (firstObject instanceof Map && secondObject instanceof Map) {
+    if (firstObject.size !== secondObject.size) return false;
+    for (let [key, value] of firstObject) {
+      if (!secondObject.has(key) || !deepEqual(value, secondObject.get(key))) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  if (firstObject instanceof Set && secondObject instanceof Set) {
+    if (firstObject.size !== secondObject.size) return false;
+    for (let value of firstObject) {
+      if (!secondObject.has(value)) {
+        return false;
+      }
+    }
+    return true;
   }
 
   if (Array.isArray(firstObject) && Array.isArray(secondObject)) {
@@ -224,15 +256,26 @@ function deepEqual(firstObject, secondObject) {
     return false;
   }
 
-  const keys1 = Object.keys(firstObject);
-  const keys2 = Object.keys(secondObject);
+  const keysFirst = Object.keys(firstObject);
+  const keysSecond = Object.keys(secondObject);
 
-  if (keys1.length !== keys2.length) {
+  if (keysFirst.length !== keysSecond.length) {
     return false;
   }
 
-  for (const key of keys1) {
-    if (!secondObject.hasOwnProperty(key) || !deepEqual(firstObject[key], secondObject[key])) {
+  for (const key of keysFirst) {
+    if (!secondObject.hasOwnProperty(key)) {
+      return false;
+    }
+
+    if (typeof firstObject[key] === 'function' && typeof secondObject[key] === 'function') {
+      if (firstObject[key] !== secondObject[key]) {
+        return false;
+      }
+      continue;
+    }
+
+    if (!deepEqual(firstObject[key], secondObject[key])) {
       return false;
     }
   }
