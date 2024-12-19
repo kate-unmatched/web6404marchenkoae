@@ -1,0 +1,134 @@
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #3b3a3a;
+    color: white;
+}
+
+.header {
+    text-align: center;
+    padding: 10px;
+    background: #333;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2.7em;
+    color: #ff007f;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1em;
+    padding: 10px 15px;
+    background: #555;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: #ff007f;
+}
+
+.main-content {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #222;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.form-group {
+    margin-bottom: 40px;
+    position: relative;
+}
+
+h2 {
+    color: #ff007f;
+    font-size: 2.1em;
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #333;
+    color: white;
+}
+
+textarea {
+    resize: none;
+}
+
+.error-message {
+    color: #ff3333;
+    font-size: 0.9em;
+    margin-top: 5px;
+    display: block;
+    position: absolute;
+    bottom: -20px;
+}
+
+.submit-btn {
+    background: #ff007f;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background: #ff3399;
+}
+
+.response-message {
+    margin-top: 20px;
+    font-size: 1em;
+    color: #ff007f;
+    display: none;
+}
+
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #333;
+    color: white;
+    cursor: pointer;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    background: #555;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+    background: #ff007f;
+}
+

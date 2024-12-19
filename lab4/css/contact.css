@@ -1,0 +1,81 @@
+body {
+    background-color: hsl(0, 0%, 20%);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.contact-header {
+    display: grid;
+    grid-template-rows: auto auto;
+    justify-items: center;
+    text-align: center;
+    margin-top: -20px;
+}
+
+.contact-header h1 {
+    font-size: 4em;
+    margin-bottom: 20px;
+}
+
+.contact-nav {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    gap: 15px;
+}
+
+.contact-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 10px 20px;
+    background-color: #555;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.contact-nav a:hover {
+    background-color: #777;
+}
+
+#main-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.contact-table {
+    width: 100%;
+    margin: 50px auto;
+    border-collapse: collapse;
+    color: #fff;
+}
+
+.contact-table th, .contact-table td {
+    padding: 15px;
+    border: 1px solid #555;
+    transition: background-color 0.3s ease;
+    text-align: left;
+}
+
+.contact-table th {
+    background-color: #444;
+    font-weight: bold;
+}
+
+.contact-table tr:nth-child(even) {
+    background-color: #333;
+}
+
+.contact-table tr:nth-child(odd) {
+    background-color: #444;
+}
+
+.contact-table td:hover, .contact-table th:hover {
+    background-color: #666;
+    transition: background-color 0.3s ease;
+}
