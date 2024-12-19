@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const isEmail = (value) =>
         /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value) &&
         /^[a-zA-Z0-9._%+-]+$/.test(value.split('@')[0]);
-    const isPhone = (value) => /^\+?\d{10,15}$/.test(value);
+    const isPhone = (value) => /^\+?\d{11}$/.test(value) && /^[0-9+]+$/.test(value);
     const isPDF = (fileInput) => {
         const file = fileInput.files && fileInput.files[0];
         return file && file.type === "application/pdf";

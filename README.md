@@ -92,7 +92,7 @@ c. мой коллега Александр
 
 Пожалуйста нажмите на превью:
 
-[![Watch the video](image.png)](https://drive.google.com/file/d/1m-61Nv34oA8gGOdzZNc4_sj0JfbKDGf6/view?usp=drive_link)
+[![Watch the video](image.png)](https://drive.google.com/file/d/1m-61Nv34oA8gGOdzZNc4_sj0JfbKDGf6/view?usp=sharing)
 
 
 # Лабораторная №3
@@ -328,3 +328,7 @@ c. мой коллега Александр
 3. Создать папку **lab4**.  
 4. Реализовать **web-сайт** в соответствии с заданием.  
 5. Выполнить **слияние** в **master-ветку**.
+
+Пожалуйста нажмите на превью:
+
+[![Watch the video](image.png)](https://drive.google.com/file/d/1ACGpRkUENIFiff3HAaSHp5D-u-AusrU6/view?usp=sharing)
