@@ -74,6 +74,6 @@ body {
 }
 
 .employee-card:hover {
-    transform: scale(1.10); /* Увеличение на 5% */
-    box-shadow: 0 8px 16px rgba(243, 204, 204, 0.2); /* Более сильная тень */
+    transform: scale(1.10);
+    box-shadow: 0 8px 16px rgba(243, 204, 204, 0.2);
 }

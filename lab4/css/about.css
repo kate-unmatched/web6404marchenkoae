@@ -40,7 +40,7 @@ body {
     max-width: 1500px;
     font-size: 1.7em;
     margin: 0 auto;
-    padding: 0; /* Убираем отступы */
+    padding: 0;
     text-align: center;
 }
 

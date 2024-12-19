@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     form.addEventListener("submit", async (event) => {
-        event.preventDefault(); // Останавливаем стандартное поведение формы
+        event.preventDefault();
 
         const isNameValid = validateInput(nameInput.value, "name-error", isNotEmpty, "Имя не должно быть пустым");
         const isEmailValid = validateInput(
@@ -43,7 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (isNameValid && isEmailValid && isPhoneValid && isFileValid) {
             const formData = new FormData(form);
 
-            // Формирование JSON объекта
             const data = {
                 name: nameInput.value,
                 email: emailInput.value,
@@ -53,7 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             console.log("Отправка данных...", data);
 
-            // Отправка POST-запроса на Mock JSON Server
             try {
                 const response = await fetch("http://localhost:3000/home", {
                     method: "POST",
